@@ -66,6 +66,7 @@
     <Build Include="dbo\Stored Procedures\GetCustomers.sql" />
     <Build Include="dbo\Stored Procedures\GetNewSignups.sql" />
     <Build Include="dbo\Stored Procedures\SaveCustomer.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateCustomerStatus.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AzureAppServiceDemoDb.publish.xml" />

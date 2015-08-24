@@ -2,8 +2,8 @@
 AS
 	SELECT Id, FirstName, LastName, Email, Phone, [Status]
 	FROM [dbo].[Customers]
-	WHERE [status] = 0
+	WHERE [Status] = 0
 
 	UPDATE [dbo].[Customers]
-	SET [status] = 1
-	WHERE [status] = 0
+	SET [Status] = 1
+	WHERE [Status] = 0
