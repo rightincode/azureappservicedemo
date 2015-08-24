@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en-us" data-ng-app="NewApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>New App Signup</title>
+</head>
+<body data-ng-controller="MainController">
+<!--<div data-ng-view></div>-->
+    <h1>Welcome to our new web application!</h1>
+    <h2>Please sign-up below</h2>
+
+    <form name="customerForm">
+        First name: <br />
+        <input type="text" id="FirstName" required data-ng-model="newCustomer.firstName" />
+        <br /><br />
+        Last name: <br />
+        <input type="text" id="LastName" required data-ng-model="newCustomer.lastName" />
+        <br /><br />
+        Email: <br />
+        <input type="email" id="Email" required data-ng-model="newCustomer.email" />
+        <br /><br />
+        Phone: <br />
+        <input type="tel" id="Phone" required data-ng-model="newCustomer.phone" />
+        <br /><br />
+
+        <button id="btnSignUp" data-ng-click="processSignUp(newCustomer)">SignUp</button>
+    </form>
+<script src="Scripts/jquery-2.1.4.min.js"></script>
+<script src="Scripts/angular.min.js"></script>
+<script src="Scripts/angular-route.min.js"></script>
+<script src="Scripts/angular-resource.min.js"></script>
+<script src="app/app.js"></script>
+</body>
+</html>
+

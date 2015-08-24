@@ -1,0 +1,19 @@
+﻿<h1>Welcome to our new web application!</h1>
+<h2>Please sign-up below</h2>
+
+<form>
+    First name: <br />
+    <input type="text" id="FirstName" required data-ng-model="newCustomer.firstName" />
+    <br /><br />
+    Last name: <br />
+    <input type="text" id="LastName" required data-ng-model="newCustomer.lastName" />
+    <br /><br />
+    Email: <br />
+    <input type="text" id="Email" required data-ng-model="newCustomer.email" />
+    <br /><br />
+    Phone: <br />
+    <input type="text" id="Phone" required data-ng-model="newCustomer.phone" />
+    <br /><br />
+
+    <button id="btnSignUp" data-ng-click="processSignUp(newCustomer)">SignUp</button>
+</form>
