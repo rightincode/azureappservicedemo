@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Routing;
 using AzureAppServiceDemoApi.Models;
 using Dapper;
 
@@ -29,13 +30,19 @@ namespace AzureAppServiceDemoApi.Controllers
             var customerData = new CustomerStore();
             return customerData.SaveCustomer(newCustomer);
         }
+
+        [HttpGet, Route("getsignups")]
+        public IEnumerable<Customer> GetSignUps()
+        {
+            var customerData = new CustomerStore();
+            return customerData.GetNewSignUps();
+        } 
     }
 
     public class CustomerStore
     {
         public IEnumerable<Customer> GetCustomers()
         {
-            IEnumerable<Customer> loadedCustomers;
 
            //var dbConnectionString = ConfigurationManager.ConnectionStrings["LocalDbConnection"].ConnectionString;
            var dbConnectionString = ConfigurationManager.ConnectionStrings["AzureDbConnection"].ConnectionString;
@@ -44,11 +51,24 @@ namespace AzureAppServiceDemoApi.Controllers
             {
                 dbConnection.Open();
 
-                loadedCustomers = dbConnection.Query<Customer>("[dbo].[GetCustomers]", commandType: CommandType.StoredProcedure);
+                return dbConnection.Query<Customer>("[dbo].[GetCustomers]", commandType: CommandType.StoredProcedure);
             }
 
-            return loadedCustomers;
         }
+
+        public IEnumerable<Customer> GetNewSignUps()
+        {
+            //var dbConnectionString = ConfigurationManager.ConnectionStrings["LocalDbConnection"].ConnectionString;
+            var dbConnectionString = ConfigurationManager.ConnectionStrings["AzureDbConnection"].ConnectionString;
+
+            using (var dbConnection = new SqlConnection(dbConnectionString))
+            {
+                dbConnection.Open();
+
+                return dbConnection.Query<Customer>("[dbo].[GetNewSignups]", commandType: CommandType.StoredProcedure);
+            }
+        }
+
 
         public Customer SaveCustomer(Customer newCustomer)
         {
