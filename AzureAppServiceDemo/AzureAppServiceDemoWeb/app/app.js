@@ -16,6 +16,7 @@
 
         var newCustomer = { firstName: '', lastName: '', email: '', phone: '' };
 
+        $scope.phoneNumberFormat = /^(?:\([2-9]\d{2}\)\ ?|(?:[2-9]\d{2}\-))[2-9]\d{2}\-\d{4}$/;
         $scope.newCustomer = newCustomer;
         $scope.processSignUp = processSignUp;
 

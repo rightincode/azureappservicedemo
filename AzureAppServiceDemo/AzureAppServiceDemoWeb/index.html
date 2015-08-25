@@ -4,32 +4,45 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>New App Signup</title>
+    <link rel="stylesheet" href="Content/bootstrap.min.css">
 </head>
-<body data-ng-controller="MainController">
+<body data-ng-controller="MainController" style="padding-left: 15px">
 <!--<div data-ng-view></div>-->
     <h1>Welcome to our new web application!</h1>
     <h2>Please sign-up below</h2>
-
-    <form name="customerForm">
-        First name: <br />
-        <input type="text" id="FirstName" required data-ng-model="newCustomer.firstName" />
-        <br /><br />
-        Last name: <br />
-        <input type="text" id="LastName" required data-ng-model="newCustomer.lastName" />
-        <br /><br />
-        Email: <br />
-        <input type="email" id="Email" required data-ng-model="newCustomer.email" />
-        <br /><br />
-        Phone: <br />
-        <input type="tel" id="Phone" required data-ng-model="newCustomer.phone" />
-        <br /><br />
-
-        <button id="btnSignUp" data-ng-click="processSignUp(newCustomer)">SignUp</button>
-    </form>
+    <br/>
+<form name="customerForm" style="width: 50%" data-ng-submit="processSignUp(newCustomer)" novalidate class="control-group">
+    <div class="form-group">
+        <label for="FirstName">First name:</label>
+        <input type="text" class="form-control" id="FirstName" name="FirstName" required data-ng-model="newCustomer.firstName"/>
+        <div class="text-danger" data-ng-show="customerForm.FirstName.$error.required && customerForm.FirstName.$dirty">First name is required</div>
+    </div>
+    <div class="form-group">
+        <label for="LastName">Last name:</label>
+        <input type="text" class="form-control" id="LastName" name="LastName" required data-ng-model="newCustomer.lastName"/>
+        <div class="text-danger" data-ng-show="customerForm.LastName.$error.required && customerForm.LastName.$dirty">Last name is required</div>
+    </div>
+    <div class="form-group">
+        <label for="Email">Email:</label>
+        <input type="email" class="form-control" id="Email" name="Email" required data-ng-model="newCustomer.email"/>
+        <div class="text-danger" data-ng-show="customerForm.Email.$error.required && customerForm.Email.$dirty">Email is required</div>
+        <div class="text-danger" data-ng-show="customerForm.Email.$error.email && customerForm.Email.$dirty">Email is not in the correct format</div>
+    </div>
+    <div class="form-group">
+        <label for="Phone">Phone:</label>
+        <input class="form-control" id="Phone" name="Phone" placeholder="(xxx) xxx-xxxx" data-ng-pattern="phoneNumberFormat" required data-ng-model="newCustomer.phone"/>
+        <div class="text-danger" data-ng-show="customerForm.Phone.$error.required && customerForm.Phone.$dirty">Phone is required</div>
+        <div class="text-danger" data-ng-show="customerForm.Phone.$error.pattern && customerForm.Phone.$dirty">Phone is not in the correct format</div>
+    </div>
+    <div class="form-group">
+        <button id="btnSignUp" class="btn btn-primary" data-ng-disabled="customerForm.$invalid">SignUp</button>
+    </div>
+</form>
 <script src="Scripts/jquery-2.1.4.min.js"></script>
 <script src="Scripts/angular.min.js"></script>
 <script src="Scripts/angular-route.min.js"></script>
 <script src="Scripts/angular-resource.min.js"></script>
+<script src="Scripts/bootstrap.min.js"></script>
 <script src="app/app.js"></script>
 </body>
 </html>
